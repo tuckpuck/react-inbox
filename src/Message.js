@@ -1,20 +1,42 @@
 import React, { Component } from 'react';
-import './Message.css';
 
-class App extends Component {
+class Message extends Component {
+  constructor(props) {
+    super(props);
+    console.log(this.props.allmessages);
+    this.state = {
+      read: "unread"
+    };
+    this.changeReadStatus = this.changeReadStatus.bind(this);
+  }
+
+  changeReadStatus() {
+    if (this.state.read === "unread") {
+      this.setState({read: "read"});
+    }
+  }
+
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className={"row message " + this.state.read}>
+  <div className="col-xs-1">
+    <div className="row">
+      <div className="col-xs-2">
+        <input type="checkbox" />
       </div>
+      <div className="col-xs-2">
+        <i className="star fa fa-star-o"></i>
+      </div>
+    </div>
+  </div>
+  <div className="col-xs-11">
+    <a href="#" onClick={this.changeReadStatus}>
+      {this.props.message}
+    </a>
+  </div>
+</div>
     );
   }
 }
 
-export default App;
+export default Message;
