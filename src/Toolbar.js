@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Toolbar extends Component {
+class Toolbar extends React.Component {
   render() {
     return (
       <div className="row toolbar">

@@ -3,7 +3,7 @@ import Toolbar from './Toolbar.js'
 import Messages from './Messages.js'
 import Message from './Message.js'
 
-class App extends Component {
+class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
