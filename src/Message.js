@@ -5,10 +5,12 @@ class Message extends Component {
     super(props);
     console.log(this.props.allmessages);
     this.state = {
-      read: "unread"
+      read: "unread",
+      selected: ""
     };
     this.changeReadStatus = this.changeReadStatus.bind(this);
-  }
+    this.changeSelected = this.changeSelected.bind(this);
+  };
 
   changeReadStatus() {
     if (this.state.read === "unread") {
@@ -16,13 +18,21 @@ class Message extends Component {
     }
   }
 
+  changeSelected() {
+    if (this.state.selected == "") {
+      this.setState({selected: "selected"});
+    } else {
+      this.setState({selected: ""});
+    }
+  }
+
   render() {
     return (
-      <div className={"row message " + this.state.read}>
+      <div className={"row message " + this.state.read + " " + this.state.selected}>
   <div className="col-xs-1">
     <div className="row">
       <div className="col-xs-2">
-        <input type="checkbox" />
+        <input type="checkbox" onChange={this.changeSelected}/>
       </div>
       <div className="col-xs-2">
         <i className="star fa fa-star-o"></i>

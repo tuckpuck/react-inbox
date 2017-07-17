@@ -3,19 +3,29 @@ import Message from './Message.js'
 
 
 class Messages extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      read: "unread"
-    };
-    this.changeReadStatus = this.changeReadStatus.bind(this);
-  }
+  // constructor(props) {
+    // super(props);
+    // this.state = {
+      // read: "unread",
+      // selected: ""
+    // };
+    // this.changeReadStatus = this.changeReadStatus.bind(this);
+  // }
 
-  changeReadStatus() {
-    if (this.state.read === "unread") {
-      this.setState({read: "read"});
-    }
-  }
+  // changeReadStatus() {
+  //   if (this.state.read === "unread") {
+  //     this.setState({read: "read"});
+  //   }
+  // }
+  //
+  // changeSelected() {
+  //   if (this.state.selected === "") {
+  //     this.setState({selected: "selected"});
+  //   } else {
+  //     this.setState({selected: ""});
+  //   }
+  // }
+
 
   render() {
     return (
