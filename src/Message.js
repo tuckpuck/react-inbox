@@ -1,18 +1,34 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 class Message extends React.Component {
   constructor(props) {
     super(props);
-    console.log(this.props.labels);
+
+    if(this.props.read){
+      var read = "read";
+    } else if(!this.props.read){
+      var read = "unread";
+    }
+
+    if(this.props.selected){
+      var selected = "selected";
+    } else if(!this.props.selected){
+      var selected = "unselected";
+    }
+
+    if(this.props.starred){
+      var star = "star fa fa-star"
+    } else if(!this.props.starred){
+      var star = "star fa fa-star-o"
+    }
+
     this.state = {
-      read: "unread",
-      selected: "",
-      starred: "fa-star-o"
+      read: read,
+      selected: selected,
+      starred: star
     };
     this.changeReadStatus = this.changeReadStatus.bind(this);
     this.changeSelected = this.changeSelected.bind(this);
-    this.changeStarred = this.changeStarred.bind(this);
-
   };
 
   changeReadStatus() {
@@ -21,47 +37,47 @@ class Message extends React.Component {
     }
   }
 
-  changeSelected() {
-    if (this.state.selected === "") {
+  changeSelected = () => {
+    if (this.state.selected === "unselected") {
       this.setState({selected: "selected"});
     } else {
-      this.setState({selected: ""});
+      this.setState({selected: "unselected"});
     }
   }
 
-  changeStarred() {
-    if (this.state.starred === "fa-star-o") {
-      this.setState({starred: "fa-star"});
-    } else {
-      this.setState({starred: "fa-star-o"});
-    }
+  changeStarred = () => {
+  if(this.state.starred === "star fa fa-star") {
+    this.setState({starred: "star fa fa-star-o"})
+  } else {
+    this.setState({starred: "star fa fa-star"})
   }
-
+}
 
   render() {
     return (
-      <div className={"row message " + this.state.read + " " + this.state.selected}>
-  <div className="col-xs-1">
-    <div className="row">
-      <div className="col-xs-2">
-        <input type="checkbox" onChange={this.changeSelected}/>
-      </div>
-      <div className="col-xs-2">
-        <i className={"star fa " + this.state.starred} onClick={this.changeStarred}></i>
-      </div>
-    </div>
-  </div>
-  <div className="col-xs-11">
+      <div className={this.props.read?"row message " + this.state.read + " " + this.state.selected:"row message " + this.state.read + " " + this.state.selected} onClick={this.changeRead}>
 
-  {this.props.labels.map((label, index) => {
-    return <span className="label label-warning">{label}</span>
-  })}
+        <div className="col-xs-1">
+          <div className="row">
+            <div className="col-xs-2">
+              <input type="checkbox" onChange={this.changeSelected}/>
+            </div>
+            <div className="col-xs-2">
+  <i onClick = {this.changeStarred} className = {this.state.starred}></i>
+            </div>
+          </div>
+        </div>
+        <div className="col-xs-11">
 
-    <a href="#" onClick={this.changeReadStatus}>
-      {this.props.message}
-    </a>
-  </div>
-</div>
+          {this.props.labels.map((label, index) => {
+            return <span className="label label-warning">{label}</span>
+          })}
+
+          <a href="#" onClick={this.changeReadStatus}>
+            {this.props.message}
+          </a>
+        </div>
+      </div>
     );
   }
 }

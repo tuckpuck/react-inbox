@@ -25,13 +25,16 @@ body {
   border-top: 1px solid #efefef;
 }
 
-.message.read {
-  background: #efefef;
-}
-
 .message.unread {
+  background: none;
   font-weight: bold;
 }
+
+.message.read {
+  background: #efefef;
+  font-weight: normal;
+}
+
 
 .message.selected {
   background: #ffffcc;
