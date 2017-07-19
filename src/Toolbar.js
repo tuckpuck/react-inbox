@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+import Message from './Message.js'
 
 class Toolbar extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
   render() {
     return (
       <div className="row toolbar">
@@ -14,7 +19,7 @@ class Toolbar extends React.Component {
         <i className="fa fa-plus"></i>
       </a>
 
-      <button className="btn btn-default">
+      <button className="btn btn-default" onClick={() => this.props.selectAll(this.props.allmessages)}>
         <i className="fa fa-minus-square-o"></i>
       </button>
 
@@ -46,51 +51,3 @@ class Toolbar extends React.Component {
 }
 
 export default Toolbar;
-
-
-
-
-
-// ----
-// <div className="messagecontainer">
-// <div className={"row message " + this.state.read}>
-// <div className="col-xs-1">
-// <div className="row">
-// <div className="col-xs-2">
-//   <input type="checkbox" />
-// </div>
-// <div className="col-xs-2">
-//   <i className="star fa fa-star-o"></i>
-// </div>
-// </div>
-// </div>
-// <div className="col-xs-11">
-// <a href="#" onClick={this.changeReadStatus}>
-// Here is an example message.
-// </a>
-// </div>
-// </div>
-//
-// <div className={"row message " + this.state.read}>
-// <div className="col-xs-1">
-// <div className="row">
-// <div className="col-xs-2">
-// <input type="checkbox" />
-// </div>
-// <div className="col-xs-2">
-// <i className="star fa fa-star-o"></i>
-// </div>
-// </div>
-// </div>
-// <div className="col-xs-11">
-// <a href="#" onClick={this.changeReadStatus}>
-// Here is an example message.
-// </a>
-// </div>
-// </div>
-// <div>
-// {this.state.allmessages.map((message, index) => (
-//   <p>Hello!</p>
-// ))}
-// </div>
-// </div>

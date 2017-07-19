@@ -13,7 +13,7 @@ class Message extends React.Component {
     if(this.props.selected){
       var selected = "selected";
     } else if(!this.props.selected){
-      var selected = "unselected";
+      var selected = "";
     }
 
     if(this.props.starred){
@@ -38,10 +38,10 @@ class Message extends React.Component {
   }
 
   changeSelected = () => {
-    if (this.state.selected === "unselected") {
+    if (this.state.selected === "") {
       this.setState({selected: "selected"});
     } else {
-      this.setState({selected: "unselected"});
+      this.setState({selected: ""});
     }
   }
 
@@ -55,12 +55,12 @@ class Message extends React.Component {
 
   render() {
     return (
-      <div className={this.props.read?"row message " + this.state.read + " " + this.state.selected:"row message " + this.state.read + " " + this.state.selected} onClick={this.changeRead}>
+      <div className={"row message " + this.state.read + " " + this.state.selected} onClick={this.changeRead}>
 
         <div className="col-xs-1">
           <div className="row">
             <div className="col-xs-2">
-              <input type="checkbox" onChange={this.changeSelected}/>
+              <input type="checkbox" checked={this.props.selected} onChange={this.changeSelected} />
             </div>
             <div className="col-xs-2">
   <i onClick = {this.changeStarred} className = {this.state.starred}></i>
@@ -70,7 +70,7 @@ class Message extends React.Component {
         <div className="col-xs-11">
 
           {this.props.labels.map((label, index) => {
-            return <span className="label label-warning">{label}</span>
+            return <span key={index} className="label label-warning">{label}</span>
           })}
 
           <a href="#" onClick={this.changeReadStatus}>
